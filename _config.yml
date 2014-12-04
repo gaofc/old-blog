@@ -1,11 +1,11 @@
 markdown: rdiscount
 highlighter: true
 permalink: /:year/:month/:day/:title.html
-name: "rusty shutter"
+name: "Rusty Shelter"
 markdown: rdiscount
 
-author: "wayne"
-atom-baseurl: "http://lhzhang.com"
+author: "gfch"
+atom-baseurl: "http://fangchao.me"
 disqus: "gopherwood"
 
 navigations:
@@ -20,7 +20,7 @@ navigations:
     href: /about.html
   - title: Gallery
     class: fa fa-film
-    href: http://foto.lhzhang.com
+    href: /
   - title: Blogroll
     class: fa fa-link
     href: /links.html

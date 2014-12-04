@@ -58,8 +58,8 @@ tags:
 
 
 EOS
-  %x[echo "#{filename}" | pbcopy]
   end
   puts "created #{filename}"
   `git add #{filename}`
+  `subl #{filename}`
 end

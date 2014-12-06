@@ -27,9 +27,8 @@ layout: default
       <img src="{{post.img}}">
     {% endif %}
     
-
     {{ post.content | truncatewords: 10 }}
-    <p>...</p>
+
     </section>
     </article>
   {% endfor %}

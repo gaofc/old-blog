@@ -54,6 +54,7 @@ layout: post
 guid: urn:uuid:#{uuid}
 tags:
   - 
+img: 
 ---
 
 

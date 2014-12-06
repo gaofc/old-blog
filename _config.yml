@@ -17,9 +17,6 @@ navigations:
   - title: About
     class: fa fa-user
     href: /about.html
-  - title: Gallery
-    class: fa fa-film
-    href: /
   - title: Blogroll
     class: fa fa-link
     href: /links.html

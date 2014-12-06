@@ -5,13 +5,13 @@ layout: page
 
 i'm
 
-> Fangchao Gao
+> Gao Fang Chao
 
-a
+who is a
 
-> Student  |  Coder 
+> Student | Coder 
 
-who's studying
+studying
 
 > Software Engineering
 
@@ -29,6 +29,6 @@ involved in
 
 mail 
 
-> [flygfch@163.com](flygfch@163.com)
+> [flygfch@163.com](mailto:flygfch@163.com)
 
 to reach me

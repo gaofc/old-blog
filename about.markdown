@@ -1,22 +1,34 @@
 ---
-title: about
+title: About
 layout: page
 ---
 
+i'm
+
+> Fangchao Gao
+
 a
 
-> Minimalist | Appleist | Unixer | Coder
+> Student  |  Coder 
 
-who involved in 
+who's studying
+
+> Software Engineering
+
+at 
+
+> Harbin Institute of Technology
+
+once been an intern at
+
+> IBM
+
+involved in 
 
 > [github](https://github.com/gfch)
 
 mail 
 
-> echo srvpqxfbyqfvpdtkbjwt | tr yxwvtsrqpkjfdb zuonmlihgeca@.
-
-or follow 
-
-> [@o_lll](https://twitter.com/#!/o_lll)
+> [flygfch@163.com](flygfch@163.com)
 
 to reach me

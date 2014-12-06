@@ -23,7 +23,13 @@ layout: default
     
     </section>
     <section class="post">
-    {{ post.content }}
+    {% if post.img %}
+      <img src="{{post.img}}">
+    {% endif %}
+    
+
+    {{ post.content | truncatewords: 10 }}
+    <p>...</p>
     </section>
     </article>
   {% endfor %}

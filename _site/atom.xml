@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Desolate Shelter</title>
+ <link href="http://fangchao.me/atom.xml" rel="self"/>
+ <link href="http://fangchao.me"/>
+ <updated>2014-12-06T12:14:07+08:00</updated>
+ <id>http://fangchao.me</id>
+ <author>
+   <name>Gfch</name>
+ </author>
+
+ 
+ <entry>
+   <title>Chef</title>
+   <link href="http://fangchao.me/2014/05/20/Chef.html"/>
+   <updated>2014-05-20T00:00:00+08:00</updated>
+   <id>urn:uuid:b64edef6-22f2-421f-bddf-ce3e0a536d22</id>
+   <content type="html">&lt;p&gt;&lt;em&gt;Author: Fangchao Gao&lt;/em&gt;
+&lt;em&gt;转载请注明出处&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;此文档适合于对Chef不了解，或者仅仅是了解但并未真正使用过Chef的用户。如果您对Chef充分了解，并且经常使用Chef，想要了解其中的技术，那么此文档可能并不是真正的适合您。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;1 What’s Chef?&lt;/h2&gt;
+
+&lt;p&gt;假设我们需要搭建一台MySQL的服务器，安装配置花费了很多时间，中间偶尔出错，但是终于搭建成功了。没过多久，我们需要另一台或者更多的MySQL服务器，于是我们不得不重复此前的安装配置步骤了。于是我们就想到了，把这些安装过程写成脚本，这样不但节约时间，而且不容易出错。&lt;/p&gt;
+
+&lt;p&gt;Chef就相当于这样的脚本管理工具。但其功能、可定制性和便捷性都要强大的多，它将脚本命令代码化，定制时只需要修改代码，而不需要修改命令，Chef自动会将一台机器配置成你想要的样子。&lt;/p&gt;
+
+&lt;p&gt;它是由Ruby开发的，服务器的构成管理工具。&lt;/p&gt;
+
+&lt;h2&gt;2 What’s in Chef?&lt;/h2&gt;
+
+&lt;p&gt;可能是便于用户理解吧，Chef开发团队在开发的时候，将所有的东西都形象的映射到了厨房里，或者说做饭的过程，大家从’Chef’这个命名就可以看出。下面我将以类比的方法，给大家讲一讲Chef中的一些主要的概念。剩下的概念，我们在下一节中写Recipe的时候再讲。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1) Recipe&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;第一个要讲的是Recipe，食谱。厨师在做菜的时候，是需要知道这个菜的做法，也就是食谱的。当然他们肯定不会边看食谱，边做菜吧。如果是这样的话，他们肯定不是一个合格的厨师。但是从计算机的角度来讲呢，可能我们真需要在每一次做菜前去看看食谱。&lt;/p&gt;
+
+&lt;p&gt;食谱里面写的是什么呢？肯定是这道菜怎么做吧。第一步做什么，第二步做什么等等。&lt;/p&gt;
+
+&lt;p&gt;在配置计算机的过程中，也是一样的，它需要知道，把这台计算机配置你想要的样子，每一步的步骤是什么。&lt;/p&gt;
+
+&lt;p&gt;比如配置一台ntp服务器，我们可能需要三个步骤。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;安装ntp&lt;/li&gt;
+&lt;li&gt;从服务器上复制配置文件&lt;/li&gt;
+&lt;li&gt;启动服务&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;我们把这三步写进食谱里，这样，我们的Chef按照这个Recipe就可以做好一道菜，配好一个具有特定功能的服务器。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2) Cookbook&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;理解了Recipe，就比较容易理解Cookbook了。Cookbook可以理解为烹饪书。一个食谱，通常是保存在烹饪书里的。菜系可能会分很多种类，所以烹饪书有很多种类，就像中国菜、意大利菜等等，会有中国菜的烹饪书、意大利菜的烹饪书。&lt;/p&gt;
+
+&lt;p&gt;Cookbook通常定义一个scenario，比如配置一个MySQL服务器，它包含了配置MySQL服务器需要用到的所有Recipe等。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3) Workstation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;工作台，厨师在做饭的时候通常需要一个工作台，在这里切菜，炒菜等等。在Chef中，这也是一个工作台，我们在这儿，写Recipe，做Cookbook，对目标结点进行操作等等。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4) Knife&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;操作用的什么呢？操作用的就是Knife，我们在Workstation中写好了Recipe、Cookbook等等，需要使用Knife才能将这些东西部署上去。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5) Role&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Role可以来描述一台服务器被配置成什么样子。比如配置成web服务器、数据库服务器甚至一个论坛。它有一个run-list，这个run-list里，包含了所有需要的Recipe和Role。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6) Node&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Node其实很好理解，他是一个处于Chef管理之下的目标结点。我们可以把它看成一个虚拟机、物理机等，只要是一台独立的机器，并且处于Chef的管理之下。Chef管理的所有机器都统称为一个Node。之所以把它放在Role的概念后面，是因为它和Role一样，都是需要一个run-list，并且这个run-list里都可以包含Recipe和Role。&lt;/p&gt;
+
+&lt;h2&gt;3 How Chef Works?&lt;/h2&gt;
+
+&lt;h3&gt;3.1 Chef结构&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://flygfch.opendrive.com/files/NjdfNl9EMWZ4SQ/1.png&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是Chef的结构图,对图做一点解释:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;有一个中心服务器(运行chef-server)
+
+&lt;ul&gt;
+&lt;li&gt;Chef将数据存储在CouchDB数据库里面&lt;/li&gt;
+&lt;li&gt;RabbitMQ和chef-solo等提供搜索的功能&lt;/li&gt;
+&lt;li&gt;Chef还提供了个图形的用户界面(cher-server-webui)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;可以有多个Workstation(运行knife工具对Chef进行配置)
+
+&lt;ul&gt;
+&lt;li&gt;Workstation上有一个pem文件,knift利用它作为认证来和chef-server通过REST API进行通信&lt;/li&gt;
+&lt;li&gt;Workstation将配置(利用Recipe等描述各Client应该如何配置自己)上传到服务器&lt;/li&gt;
+&lt;li&gt;Workstation和中心服务器可以在同一台机器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;可以有多个Client(运行chef-server的被配置机器)
+
+&lt;ul&gt;
+&lt;li&gt;Client上有一个pem文件,chef-client利用它作为认证来和chef-server通过REST API进行通信&lt;/li&gt;
+&lt;li&gt;当新加一个Client的时候,需要从中心服务器上拷贝validator.pem到新加的Client
+*它利用这个pem进行注册得到自己的client.pem进行以后的认证&lt;/li&gt;
+&lt;li&gt;Client连到Chef服务器查看如何配置自己,然后进行自我配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;3.2 Chef三种模式&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Chef-Solo
+  由一台普通电脑控制所有的服务器，不需要专设一台chef-server&lt;/li&gt;
+&lt;li&gt;Client-Server
+  所有的服务器作为chef-client，统一由chef-server进行管理，管理包括安装、配置等工作 chef-server可以自建，但安装的东西较多，由于使用solr作为全文搜索引擎，还需要安装java&lt;/li&gt;
+&lt;li&gt;Opscode Platform
+  类似于Client-Server，只是Server端不需要自建，而是采用http://www.opscode.com 提供的chef-server服务&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;3.3 Chef怎么工作&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://flygfch.opendrive.com/files/NjdfN19XY1dmcA/2.png&quot; alt=&quot;2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如上图，我们会看到有三大部分，Workstation、Server和Nodes。简要的说，我们在Workstation中工作，写Recipe、Cookbook等，然后上传到服务器端，服务器端根据Node Object的不同需要，从Cookbook中读取需要的Recipe等，对每一个Node实施配置。Node可以是虚拟机，云服务，实体机等等。&lt;/p&gt;
+
+&lt;p&gt;具体的，我们有了这幅图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://flygfch.opendrive.com/files/NjdfNV9JdzFPZg/3.png&quot; alt=&quot;3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们在这里引入&lt;strong&gt;Data Bag&lt;/strong&gt;这个概念。Data Bag是一个存储信息的工具，它提供了定义全局信息的方法。我们可以在其他地方来引用这些数据。它使用json的形式来保存数据。&lt;/p&gt;
+
+&lt;p&gt;如图，我们在Workstation中工作，写Recipe等，然后由Recipe和Attributes等信息构成了Cookbook，我们根据Cookbook特定的版本、Environs、Roles、Data bag中的信息还有settings，使用knife这个强大的工具，将这些东西上传到服务器端。服务器端根据各种不同的Cookbook组成了一个run-list，再加上一些Attributes，针对不同的Node Object，实施部署。Nodes部分，可以是物理机、虚拟机、云、网络等各种类型。我们对每一个Node都是使用Chef-client这个工具来进行操作的。&lt;/p&gt;
+
+&lt;p&gt;那&lt;strong&gt;Ohai&lt;/strong&gt;是什么呢？它是一个检测属性的工具，在每一次执行Chef-client之前，Ohai会检测此机器上的各种属性，提供给Chef-client。它是Chef-client的一部分。&lt;/p&gt;
+
+&lt;p&gt;这么一解释，大家是不是对Chef的工作过程大概有所了解呢？&lt;/p&gt;
+
+&lt;h3&gt;3.4 Chef怎么用&lt;/h3&gt;
+
+&lt;p&gt;这一节会具体的给大家介绍Chef的用法。当然还会引入一些新的概念。&lt;/p&gt;
+
+&lt;p&gt;当然，你也可以去官方网站学习。&lt;a href=&quot;https://learnchef.opscode.com/get-started/&quot;&gt;https://learnchef.opscode.com/get-started/&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;我们将使用一个例子来让大家对Chef的使用有更深刻的了解。我会尽可能的将这些东西简化以便于理解。我在例子中用到的环境都是linux，如果你想用windows，我也会有链接供你参考。&lt;/p&gt;
+
+&lt;p&gt;在最终，我们会在浏览器中会看到一个这样的网页。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://flygfch.opendrive.com/files/NjdfNF9KQWZhQw/4.png&quot; alt=&quot;4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1) Set up Chef Environment&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Chef有三种版本，Enterprise Chef、Open Sourse Chef和Hosted Enterprise Chef。前两种需要一台机器来自己安装Chef Server。这里，我使用最后一种简单的，不需要安装Chef Server的方式来给大家介绍。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先，在这里&lt;a href=&quot;https://manage.opscode.com/starter-kit&quot;&gt;https://manage.opscode.com/starter-kit&lt;/a&gt;下载Starter Kit，把它解压后放在一个方便的地方。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;运行Chef installer。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果是Windows，在这里http://www.getchef.com/chef/install/下载后双击安装。&lt;/li&gt;
+&lt;li&gt;如果是Ubuntu，运行
+&lt;code&gt;curl -L https://www.opscode.com/chef/install.sh | sudo bash&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果是OS X，运行
+&lt;code&gt;curl -L https://www.opscode.com/chef/install.sh | sudo bash&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Step 3&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我们需要一台Node供Chef去管理。这个Node可以是物理机，但是虚拟机会更加高效。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Amazon EC2是官方他们推荐的。
+如果你是Vagrant的用户，你也可以使用Vagrant。你需要做的，仅仅是一条命令：
+&lt;code&gt;vagrant  up&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;当然也可以使用他们自己的Chef Training Lab。在&lt;a href=&quot;https://learnchef.opscode.com/get-started/#chef-training-lab-beta&quot;&gt;这里&lt;/a&gt;
+看如何申请它们的虚拟机。&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Step 4&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候，我们已经有了一个公共ip或者主机名称了。我们需要告诉Chef，将这个Node加入进来。&lt;/p&gt;
+
+&lt;p&gt;如果此Node是Windows环境。在&lt;a href=&quot;http://docs.opscode.com/plugin_knife_windows.html&quot;&gt;http://docs.opscode.com/plugin_knife_windows.html&lt;/a&gt;看具体的细节。&lt;/p&gt;
+
+&lt;p&gt;如果是Linux环境。我们只需要运行下面的命令：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;knife bootstrap ec2-xx-xx-xx-xx.compute-1.amazonaws.com --sudo -x chef -P chef -N node1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;其中，&lt;code&gt;c2-xx-xx-xx-xx.compute-1.amazonaws.com&lt;/code&gt;是你的node的IP地址或者主机名称，-x和-P的参数分别是用户名和密码，node1是你想给这个node起的名称。&lt;/p&gt;
+
+&lt;p&gt;根据需要，将上面的代码替换掉。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Verify&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候，我们差不多已经将此Node添加进来。在&lt;a href=&quot;https://manage.opscode.com/organizations&quot;&gt;https://manage.opscode.com/organizations&lt;/a&gt;，你将会看到你添加的结点。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2)    Create Cookbook&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我们需要搭建一台web服务器，里面放一个简单的Hello World网页，当我访问此机器时，能显示出Hello World。&lt;/p&gt;
+
+&lt;p&gt;假设我们的环境是Linux的。如果是Windows，请移步这里参考
+&lt;a href=&quot;https://learnchef.opscode.com/tutorials/create-your-first-cookbook/#configureiisonwindowsserver&quot;&gt;https://learnchef.opscode.com/tutorials/create-your-first-cookbook/#configureiisonwindowsserver&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1 创建一个Cookbook&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;运行命令 &lt;code&gt;knife cookbook create iis-tutorial-1&lt;/code&gt;，我们创建了一个名为create iis-tutorial-1的Cookbook。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2 创建一个Recipe&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在cookbooks/iis-tutorial-1/recipes/路径中创建一个文件default.rb，这样，我们就在刚才创建的Cookbook中创建了一个Recipe，名为default.rb。&lt;/p&gt;
+
+&lt;p&gt;现在我们需要写代码了。&lt;/p&gt;
+
+&lt;p&gt;写代码之前，我们在这里引入另外两个概念，&lt;strong&gt;Resource&lt;/strong&gt;和&lt;strong&gt;Provider&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;什么是&lt;strong&gt;Resource&lt;/strong&gt;呢？Resource是Chef提供给你的用来描述系统的某一部分希望怎么配置(处于什么状态),请看一个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    package &quot;vim&quot; do
+        action :install
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这就是一条Resource,它想要表达的是希望vim安装(处于安装的状态)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;它有一个Resource类型(package)&lt;/li&gt;
+&lt;li&gt;有一个名字(vim)&lt;/li&gt;
+&lt;li&gt;可能还会有一些可选的参数(这个例子里没有)&lt;/li&gt;
+&lt;li&gt;有一个动作(install)(实际上描述一种状态(和Puppet里的ensure类似))&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;这里package是一个Resource类型,这里列出几个比较常用的Resource：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Directory&lt;/li&gt;
+&lt;li&gt;Execute&lt;/li&gt;
+&lt;li&gt;File&lt;/li&gt;
+&lt;li&gt;Group&lt;/li&gt;
+&lt;li&gt;Package&lt;/li&gt;
+&lt;li&gt;Script&lt;/li&gt;
+&lt;li&gt;Service&lt;/li&gt;
+&lt;li&gt;Template&lt;/li&gt;
+&lt;li&gt;User&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;下面我会列一些Resource的例子,&lt;em&gt;如果你对Resource已经有理解了,可以直接跳到代码部分&lt;/em&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resouece示例1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    service &quot;ntpd&quot; do
+        action[:enable,:start]
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是一条类型为service的Resource,这描述的是:启动ntpd服务并设置成开机启动 注:虽然使用action这个词,但实际上它描述的是一种状态(它不会每次都试图去start)。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resource示例2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    user &quot;random&quot; do
+        comment &quot;Random User&quot;   uid 1000
+        gid &quot;users&quot;   home &quot;/home/random&quot;   shell &quot;/bin/zsh&quot; end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的Resource的类型为user,名字为random,然后一些参数(uid,gid,home,shell) 它描述的是:在系统上以这些参数创建random这个用户。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resource示例3&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    file &quot;/tmp/something&quot; do
+        owner &quot;root&quot;   group &quot;root&quot;   mode &quot;0755&quot;   action :create
+        content &quot;just test&quot; end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个Resource的类型为file, 名字为'/tmp/something',动作为'create',还有一些参数 它描述的是:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在被管理服务器上创建文件'/tmp/something',&lt;/li&gt;
+&lt;li&gt;这个文件的拥有者和拥有组都是root,&lt;/li&gt;
+&lt;li&gt;这个文件的模式为0755,&lt;/li&gt;
+&lt;li&gt;这个文件内容为'just test'&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Resource示例4&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    template &quot;/tmp/config.conf&quot; do
+        source &quot;config.conf.erb&quot;   variables(
+            :config_var =&amp;gt; node[:configs][:config_var]
+        )
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是一个类型的template的Resource,它把服务器上的config.conf.erb文件传到客户机上,重命名为config.conf并做变量替换。&lt;/p&gt;
+
+&lt;p&gt;想要更加详细的解释，请移步这里&lt;a href=&quot;http://docs.opscode.com/chef/resources.html&quot;&gt;http://docs.opscode.com/chef/resources.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Provider&lt;/strong&gt;的概念可能比较抽象,像上面的Resource的例子,我们之所以不关关心vim怎么被安装(apt,yum…),就是因为有Provider 也就是说Provider负责把抽象的Resource对应到实际的命令(如上面的例子可能是:&lt;code&gt;yum -y install vim&lt;/code&gt;)。&lt;/p&gt;
+
+&lt;p&gt;好了，打开刚才的default.rb，现在我们可以开始写代码了。如果你的环境是Ubuntu或者Debian，使用下面的代码。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    package 'apache2' do
+        action :install
+    end
+
+    service 'apache2' do
+        action [ :enable, :start ]
+    end
+
+    cookbook_file '/var/www/index.html' do
+        source 'index.html'
+        mode '0644'
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你的环境是RHEL, CentOS, 或者Fedora，使用下面的代码。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    package 'httpd' do
+        action :install
+    end
+
+    service 'httpd' do
+        action [ :enable, :start ]
+    end
+
+    cookbook_file '/var/www/html/index.html' do
+        source 'index.html'
+        mode '0644'
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过我刚才对Resource的解释，想必大家也能大概才出来这几行代码是在干什么。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 3 添加文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;刚才说了，我们要配置一个Web服务器，当然需要原始的web文件了。在下面的路径中
+cookbooks/iis-tutorial-1/files/default/，添加index.html文件，打开文件，我们写上最简单的html代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;html&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;h1&amp;gt;Hello, world!&amp;lt;/h1&amp;gt;
+    &amp;lt;/body&amp;gt;
+    &amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 4 上传Cookbook到Chef Server&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;运行如下代码：
+&lt;code&gt;knife cookbook upload iis-tutorial-1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 5 创建run-list&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;run-list决定了这些Recipe的运行顺序。
+    登录manage.opscode.com，登录自己的账号，在Nodes这个tab下，选择一个node然后打开它的run-list。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://flygfch.opendrive.com/files/NjdfOF9YMkdlUA/5.png&quot; alt=&quot;5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;将Available Recipes中你需要的Recipe，拖动到Current Run List中。然后保存。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://flygfch.opendrive.com/files/NjdfOV9nU2tMcQ/6.png&quot; alt=&quot;6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 6 运行Chef-client&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;运行下面的代码，&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;knife ssh ec2-xx-xx-xx-xx.compute-1.amazonaws.com 'sudo chef-client' -m -x chef -P chef&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;替换掉目标ip、用户名和密码，就可以。&lt;/p&gt;
+
+&lt;p&gt;或者，我们可以ssh登录到目标机器，然后在去运行Chef-client。&lt;/p&gt;
+
+&lt;p&gt;代码如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ssh chef@ec2-xx-xx-xx-xx.compute-1.amazonaws.com
+    sudo chef-client
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 7 验证你的网站&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;用浏览器打开&lt;a href=&quot;http://ec2-xx-xx-xx-x.compute-1.amazonaws.com&quot;&gt;http://ec2-xx-xx-xx-x.compute-1.amazonaws.com&lt;/a&gt;，你的主机的ip或者主机名称的URL,这时候，如果你看到浏览器上显示Hello World，那么你就配置成功了！&lt;/p&gt;
+
+&lt;h2&gt;4 What’s next?&lt;/h2&gt;
+
+&lt;p&gt;上面的文档，只是起到一个入门的作用，让你对Chef有所了解。如果你看了上面的东西，对Chef产生了兴趣，或者未来的工作中会用到它，想继续了解，可以去看官网上的学习材料和教程，或者去看官方doc文档。网址分别为：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://learnchef.opscode.com/&quot;&gt;https://learnchef.opscode.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.opscode.com/display/chef/Home&quot;&gt;https://wiki.opscode.com/display/chef/Home&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Reference&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Learn Chef &lt;a href=&quot;https://learnchef.opscode.com/&quot;&gt;https://learnchef.opscode.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chef Wiki &lt;a href=&quot;https://wiki.opscode.com/display/chef/Home&quot;&gt;https://wiki.opscode.com/display/chef/Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chef基础 &lt;a href=&quot;http://my.oschina.net/williamherrychina/blog/63576&quot;&gt;http://my.oschina.net/williamherrychina/blog/63576&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Date: 2014-5-20&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Author: FangChao Gao&lt;/em&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

@@ -1,14 +1,17 @@
 ---
-title: chef
+title: Chef
 layout: post
 guid: urn:uuid:b64edef6-22f2-421f-bddf-ce3e0a536d22
 tags:
   - chef
-  - recipe
-  - cookbook
-  - knife
-  - config
+  - tech
+  - tools
+img: http://flygfch.opendrive.com/files/NjdfNl9EMWZ4SQ/1.png
 ---
+
+*Author: Fangchao Gao*
+*转载请注明出处*
+
 
 *此文档适合于对Chef不了解，或者仅仅是了解但并未真正使用过Chef的用户。如果您对Chef充分了解，并且经常使用Chef，想要了解其中的技术，那么此文档可能并不是真正的适合您。*
 
@@ -369,16 +372,10 @@ run-list决定了这些Recipe的运行顺序。
 
 
 
+
 *Date: 2014-5-20*
 
-*Author: Gao FangChao*
-
-
-
-
-
-
-
+*Author: FangChao Gao*
 
 
 

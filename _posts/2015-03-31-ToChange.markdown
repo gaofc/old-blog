@@ -2,8 +2,10 @@
 title: ToChange
 layout: post
 guid: urn:uuid:c8a37ebb-84a5-4a58-819d-11f68e4ab0c5
-tags:
-  - 
+tags: 
+  - life
+  - love
+  - job
 img: http://flygfch.opendrive.com/files/NjdfMjA2ODgzX0sxQ2pM/20150331.png
 ---
 

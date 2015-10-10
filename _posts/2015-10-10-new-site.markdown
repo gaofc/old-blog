@@ -1,5 +1,5 @@
 ---
-title: new-site
+title: 如何在GitHub上新建一个网站并绑定子域名
 layout: post
 guid: urn:uuid:fcda47e9-1e28-4178-bcf3-96526a033144
 tags:

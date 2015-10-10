@@ -1,0 +1,73 @@
+---
+title: new-site
+layout: post
+guid: urn:uuid:fcda47e9-1e28-4178-bcf3-96526a033144
+tags:
+  - blog
+  - subdomain
+  - github
+  - pages
+img: https://od.lk/s/NjdfNjg1MTQ1Xw/2015100900.jpg
+---
+
+
+今天新开辟了一片天地，将自己的技术博客和生活博客分开来。技术博客继续使用`fangchao.me`，生活博客开了一个子域名，`life.fangchao.me`，记录一下自己的生活。在此记录一下，在GitHub上怎么重新建立一个新的网站并且将其指向子域名。
+
+比如我拥有了一个域名`abc.com`，现在我将`abc.com`以及`www.abc.com`映射到我的主要网站上。可是我又有一个新的想法，希望重新建一个网站，比如我想一个网站写技术博客，一个主要写生活感悟，一个写爱情，一个写吃饭，等等等等。于是就有了这个想法，我将`life.abc.com`映射到我的生活感悟博客中，将`love.abc.com`映射到我的爱情博客中，将`eat.abc.com`映射到我的吃饭博客中。有一个域名就是这么任性。
+
+**如果你曾经有过这个想法，但是找了好久都没找到合适的方法。那你来对地方了。**
+
+今天记录下我的过程。其实以前弄过这个，但是没有记录，只记得很麻烦，查了好多资料，弄了好长时间才整好。今天靠着以前的记忆，重新弄了次，依旧很麻烦，所以还是把这个过程记录下来，把这些重新捋一捋。也给有同样想法的人提供一个借鉴。
+
+**干货来了**。
+
+**1 新建一个repository，使用以前的代码**
+
+首先，如果你想建立一个跟以前一模一样的网站，那么，需要将以前的代码复制到一个新的repository。
+所以，首先new一个新的repository。
+
+![new rep](https://od.lk/s/NjdfNjg1MTQxXw/2015100901.png)
+
+然后import code
+
+![import code](https://od.lk/d/NjdfNjg1MTQyXw/2015100902.png)
+
+之后复制你以前代码的Subversion地址
+
+![code add](https://od.lk/d/NjdfNjg1MTQzXw/2015100903.png)
+
+import就OK
+
+![import](https://od.lk/d/NjdfNjg1MTQ0Xw/2015100904.png)
+
+**2 修改CNAME文件**
+
+如果你的以前的代码也是建立在GitPages上的，那么一定有一个CNAME文件。如果不是，那就新建一个，打开之后，写上你需要将其指向的域名，比如我的`life.fangchao.me`，就OK了，**不要添加任何空格或者回车之类的符号**。
+
+**3 修改branch**
+
+可以看到新建rep的branch一定是`master`，我们需要将branch改成`gh-pages`才可以使用。
+我是直接在本地使用命令行去更改的。
+具体的命令如下
+
+* `git clone git@github.com:XXXX/XXXX.git`首先复制你的git项目地址，就是以.git结尾的那个地址，将其拉到本地来。
+* `cd XXXX`进入代码目录
+* `git branch`可以查看一下本地分支
+* `git branch gh-pages`在本地建立一个分支
+* `git checkout gh-pages`切换到新分支
+* `git push origin gh-pages`将新分支发布在github上
+* `git branch -d master`将本地的master分支删除
+* `git push origin :master`将github远程端的master分支删除 
+
+这个时候GitHub端的基本上就做完了.现在就需要你在域名购买商那儿，添加一条域名解析记录。
+
+**4 添加域名解析记录**
+
+记录类型选`CNAME`，主机记录写上你想要指向的名称，比如我的是`life`，你可以写`eat`、`love`等等。记录值写GitHub Pages上你的主域名，一般都是`XXXX.github.io`,`XXXX`是你的用户名。
+点击保存，一般10分钟以内就生效。
+
+这时候再访问你想要得域名，比如`love.abc.com`，就重新定位到一个新的博客了。
+
+**大功告成**
+
+愿这篇文章对你有帮助。:）

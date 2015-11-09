@@ -1,0 +1,102 @@
+---
+title: 网页中内嵌字体
+layout: post
+guid: urn:uuid:d737b647-abc8-45c1-a6f1-3162fbf2db8e
+tags:
+  - font
+  - web
+  - css
+  - font-family
+  - open sans
+---
+
+##Background
+
+今天在浏览一个网站的时候，发现了一款非常好看的字体，审查元素发现，这个字体叫```Open Sans```，非常惊艳。和我以前发现的一款字体```Segoe UI```非常像。对比了一下，其实都很不错，而且很相像。于是Google了下，竟然发现其实这两款字体出自同一人[Steve Matteson](https://en.wikipedia.org/wiki/Steve_Matteson)之手！真是大神级的人物。看来的我的欣赏水平还没有跑偏。
+
+不同的是，```Segoe UI```属于微软的东西，付费，而```Open Sans```是免费的。
+
+刚好自己最近在做网站开发，于是就想把这款字体嵌入到自己正在做的网页里。今天就写一下怎么把一款字体嵌入到自己的网页中。
+
+其实在CSS中，使用```font-family```这个属性就直接可以将网页的字体设置成想要的。但是有个前提是，**你所使用的某种特定的字体系列，在网页中是否能显示，完全取决于用户机器上该字体系列是否可用**。如果用户机器上没有这种字体，那就会变成默认的字体。
+
+所以，为了保证可以在每一台机器上都能显示，把一款字体嵌进网页是一个不错的选择。当然仅限于西方字体，如果是汉语的话，字体会很庞大，每次加载字体就会浪费用户很长的时间和很多的流量。
+
+##字体
+
+首先我们必须在网上下载到自己想要的字体，比如ttf格式的字体。在这里先简单科普一下不同的字体格式。
+
+* ```TureTpe(.ttf)```格式：
+
+>```.ttf```字体是Windows和Mac的最常见的字体，是一种RAW格式，因此他不为网站优化,支持这种字体的浏览器有```IE9+,Firefox3.5+,Chrome4+,Safari3+,Opera10+,iOS Mobile Safari4.2+```
+
+* ```OpenType(.otf)```格式：
+
+>```.otf```字体被认为是一种原始的字体格式，其内置在TureType的基础上，所以也提供了更多的功能,支持这种字体的浏览器有```Firefox3.5+,Chrome4.0+,Safari3.1+,Opera10.0+,iOS Mobile Safari4.2+```
+
+* ```Web Open Font Format(.woff)```格式：
+
+>```.woff```字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType的压缩版本，同时也支持元数据包的分离,支持这种字体的浏览器有```IE9+,Firefox3.5+,Chrome6+,Safari3.6+,Opera11.1+```
+
+* ```Embedded Open Type(.eot)```格式：
+
+>```.eot```字体是IE专用字体，可以从TrueType创建此格式字体,支持这种字体的浏览器有```IE4+```
+
+* ```SVG(.svg)```格式：
+
+>```.svg```字体是基于SVG字体渲染的一种格式,支持这种字体的浏览器有```Chrome4+,Safari3.1+,Opera10.0+,iOS Mobile Safari3.2+```
+
+所以这就意味着，我们至少需要```.woff,.eot```两种格式字体，甚至还需要```.svg```等字体达到更多种浏览版本的支持。
+
+##字体转换
+
+在这里给大家推荐一个网站[fontsquirrel](http://www.fontsquirrel.com/)，可以在线的转换出各种字体，甚至生成一个CSS文件，我们直接就能在代码中使用。我们可以使用它将转换好的字体和CSS文件下载下来。
+
+![fontsquirrel](https://od.lk/s/NjdfNzA3NDI5Xw/2015110301.png)
+
+##Code
+
+在css代码中，我们主要使用的是```font-face```这个属性，它的主要功能就是把自己定义的Web字体嵌入到网页中。
+
+首先我们来看看```@font-face```的语法规则：
+
+		@font-face {
+			font-family: <YourWebFontName>;
+			src: <source> [<format>][,<source> [<format>]]*;
+			[font-weight: <weight>];
+			[font-style: <style>];
+		}
+其中关于属性的解释（有些可能没有用到）
+
+		font-family：设置文本的字体名称。
+		font-style：	设置文本样式。
+		font-variant：设置文本是否大小写。
+		font-weight：设置文本的粗细。
+		font-stretch：设置文本是否横向的拉伸变形。
+		font-size：设置文本字体大小。
+		src：设置自定义字体的相对路径或者绝对路径，注意，此属性只能在@font-face规则里使用。
+
+我们可以看看[fontsquirrel](http://www.fontsquirrel.com/)为我们生成的CSS文件内容
+
+		@font-face {
+		    font-family: 'open_sansregular';
+		    src: url('../fonts/opensans-regular-webfont.eot');
+		    src: url('../fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		         url('../fonts/opensans-regular-webfont.woff2') format('woff2'),
+		         url('../fonts/opensans-regular-webfont.woff') format('woff'),
+		         url('../fonts/opensans-regular-webfont.ttf') format('truetype'),
+		         url('../fonts/opensans-regular-webfont.svg#open_sansregular') format('svg');
+		    font-weight: normal;
+		    font-style: normal;
+		
+		}
+
+所以根据这些，我们可以将字体文件放在指定的目录下，然后更改url的地址，对你的字体命名。然后，像正常字体一样去使用它吧。比如
+
+		body {
+		  font-family:"open_sansregular"
+		}
+
+就可以全局使用这个字体了。
+
+

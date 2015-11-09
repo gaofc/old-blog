@@ -5,7 +5,7 @@ layout: page
 
 i'm
 
-> Gao Fang Chao
+> Fangchao Gao
 
 who is a
 
@@ -21,7 +21,11 @@ at
 
 once been an intern at
 
-> IBM
+> IBM China Software Development Lab
+
+now continue my internship at
+
+> Tencent
 
 involved in 
 

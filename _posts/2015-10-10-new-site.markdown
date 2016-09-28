@@ -26,19 +26,19 @@ img: https://od.lk/s/NjdfNjg1MTQ1Xw/2015100900.jpg
 首先，如果你想建立一个跟以前一模一样的网站，那么，需要将以前的代码复制到一个新的repository。
 所以，首先new一个新的repository。
 
-![new rep](https://od.lk/s/NjdfNjg1MTQxXw/2015100901.png)
+![new rep](http://odvzs788r.bkt.clouddn.com/fangchao.me/2015100901.png)
 
 然后import code
 
-![import code](https://od.lk/d/NjdfNjg1MTQyXw/2015100902.png)
+![import code](http://odvzs788r.bkt.clouddn.com/fangchao.me/2015100902.png)
 
 之后复制你以前代码的Subversion地址
 
-![code add](https://od.lk/d/NjdfNjg1MTQzXw/2015100903.png)
+![code add](http://odvzs788r.bkt.clouddn.com/fangchao.me/2015100903.png)
 
 import就OK
 
-![import](https://od.lk/d/NjdfNjg1MTQ0Xw/2015100904.png)
+![import](http://odvzs788r.bkt.clouddn.com/fangchao.me/2015100904.png)
 
 **2 修改CNAME文件**
 

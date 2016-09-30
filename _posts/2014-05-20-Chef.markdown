@@ -16,14 +16,14 @@ img: http://flygfch.opendrive.com/files/NjdfNl9EMWZ4SQ/2014052001.png
 *此文档适合于对Chef不了解，或者仅仅是了解但并未真正使用过Chef的用户。如果您对Chef充分了解，并且经常使用Chef，想要了解其中的技术，那么此文档可能并不是真正的适合您。*
 
 
-##1 What’s Chef?
+## 1 What’s Chef?
 假设我们需要搭建一台MySQL的服务器，安装配置花费了很多时间，中间偶尔出错，但是终于搭建成功了。没过多久，我们需要另一台或者更多的MySQL服务器，于是我们不得不重复此前的安装配置步骤了。于是我们就想到了，把这些安装过程写成脚本，这样不但节约时间，而且不容易出错。
 
 Chef就相当于这样的脚本管理工具。但其功能、可定制性和便捷性都要强大的多，它将脚本命令代码化，定制时只需要修改代码，而不需要修改命令，Chef自动会将一台机器配置成你想要的样子。
 
 它是由Ruby开发的，服务器的构成管理工具。
 
-##2 What’s in Chef?
+## 2 What’s in Chef?
 可能是便于用户理解吧，Chef开发团队在开发的时候，将所有的东西都形象的映射到了厨房里，或者说做饭的过程，大家从’Chef’这个命名就可以看出。下面我将以类比的方法，给大家讲一讲Chef中的一些主要的概念。剩下的概念，我们在下一节中写Recipe的时候再讲。
 
 **1) Recipe**
@@ -64,9 +64,9 @@ Role可以来描述一台服务器被配置成什么样子。比如配置成web�
 
 Node其实很好理解，他是一个处于Chef管理之下的目标结点。我们可以把它看成一个虚拟机、物理机等，只要是一台独立的机器，并且处于Chef的管理之下。Chef管理的所有机器都统称为一个Node。之所以把它放在Role的概念后面，是因为它和Role一样，都是需要一个run-list，并且这个run-list里都可以包含Recipe和Role。
 
-##3 How Chef Works?
+## 3 How Chef Works?
 
-###3.1 Chef结构
+### 3.1 Chef结构
 
 ![1](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052001.png)
 
@@ -86,7 +86,7 @@ Node其实很好理解，他是一个处于Chef管理之下的目标结点。我
 	*它利用这个pem进行注册得到自己的client.pem进行以后的认证
 	* Client连到Chef服务器查看如何配置自己,然后进行自我配置
 
-###3.2 Chef三种模式
+### 3.2 Chef三种模式
 
 * Chef-Solo
 	由一台普通电脑控制所有的服务器，不需要专设一台chef-server
@@ -95,7 +95,7 @@ Node其实很好理解，他是一个处于Chef管理之下的目标结点。我
 * Opscode Platform
 	类似于Client-Server，只是Server端不需要自建，而是采用http://www.opscode.com 提供的chef-server服务
 
-###3.3 Chef怎么工作
+### 3.3 Chef怎么工作
 
 ![2](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052002.png)
 
@@ -113,7 +113,7 @@ Node其实很好理解，他是一个处于Chef管理之下的目标结点。我
 
 这么一解释，大家是不是对Chef的工作过程大概有所了解呢？
 
-###3.4 Chef怎么用
+### 3.4 Chef怎么用
 
 这一节会具体的给大家介绍Chef的用法。当然还会引入一些新的概念。
 
@@ -364,7 +364,7 @@ run-list决定了这些Recipe的运行顺序。
 
 
 
-##Reference
+## Reference
 
 * Learn Chef [https://learnchef.opscode.com/](https://learnchef.opscode.com/)
 * Chef Wiki [https://wiki.opscode.com/display/chef/Home](https://wiki.opscode.com/display/chef/Home)

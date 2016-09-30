@@ -1,0 +1,24 @@
+---
+title: Chef
+layout: post
+guid: urn:uuid:b64edef6-22f2-421f-bddf-ce3e0a536d212
+tags:
+  - chef
+  - tech
+  - tools
+img: http://flygfch.opendrive.com/files/NjdfNl9EMWZ4SQ/2016093000.png
+---
+
+![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2016093000.png)
+
+似乎已经很久没更新过博客了，眼看着2016年已经不足20%了，这才是今年第一篇。
+
+主要是想把自己的博客打造成技术博客，和生活博客独立开来。
+
+现在看好像最近在技术上没学到什么新的东西，也是因为后端技术太博大精深了，总感觉自己还懂的太少。
+
+有时间写写有关storm的文章吧。
+
+再就是，这儿以后也开始写写生活吧。
+
+*ps. 上面照片是上次去梧桐山拍的*

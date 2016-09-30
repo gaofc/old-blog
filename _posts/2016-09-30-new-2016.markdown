@@ -6,10 +6,10 @@ tags:
   - chef
   - tech
   - tools
-img: http://flygfch.opendrive.com/files/NjdfNl9EMWZ4SQ/2016093000.png
+img:
 ---
 
-![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2016093000.png)
+![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2016093000.jpg)
 
 似乎已经很久没更新过博客了，眼看着2016年已经不足20%了，这才是今年第一篇。
 

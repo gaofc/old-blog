@@ -1,12 +1,12 @@
 ﻿---
-title: Zookeeper部署与动态扩容
+title: Zookeeper deploy and dynamic expansion
 layout: post
 guid: 
 tags:
   - zookeeper
-  - 集群
-  - 部署
-  - 动态扩容
+  - cluster
+  - deploy
+  - dynamic expansion
 img: http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg
 ---
 

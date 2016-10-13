@@ -1,13 +1,13 @@
 ﻿---
 title: Zookeeper部署与动态扩容
 layout: post
-guid: urn:uuid:b64edef6-22f2-421f-bddf-ce3e0326d212
+guid: 
 tags:
   - zookeeper
   - 集群
   - 部署
   - 动态扩容
-img:![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg)
+img: http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg
 ---
 
 ## 背景
@@ -123,5 +123,3 @@ img:![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg)
 
 ## END
 **实践出真知**。对zookeeper的部署研究了一些时间，进行了很多的实验，得出了上面的一些结论。如果上面有遗漏的地方或者不对的地方，欢迎讨论和指正。
-
-

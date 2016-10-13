@@ -1,7 +1,7 @@
 ﻿---
-title: Zookeeper deploy and dynamic expansion
+title: Zookeeper部署和动态扩容
 layout: post
-guid: 
+guid:  urn:uuid:b64edef6-4321-421f-bddf-ce3e0a536d212
 tags:
   - zookeeper
   - cluster
@@ -10,13 +10,16 @@ tags:
 img: http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg
 ---
 
+
 ## 背景
+
 最近在一直维护以前的一个实时计算的系统，用到了很多有关storm、kafka、zookeeper之类的知识。自己也一直在学习这些系统的架构、源码。
 由于一直是在以前集群的基础上不断修改，没有从头开始部署过集群。最近运维提了个问题，就是由于以前zookeeper是单机模式下运行的，万一这台机器出了问题，那就会影响整个实时计算，包括storm和kafka。于是问题来了，那怎么把它扩展成集群模式的呢？扩展的时候会影响现网正在运行的系统吗？
 
 于是在研究研究了zookeeper有关部署和扩容的问题。把一些主要的过程记录在这里。
 
 ## 配置部署
+
 首先我们先看看怎么部署zookeeper。在这里主要记录一些部署的步骤。集群的部署在后面会写。
 
 首先从官网上下载zookeeper合适的版本，进行解压。之后上传到服务器端，解压到文件夹。
@@ -73,6 +76,7 @@ img: http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg
 **clientPort**这个视情况而定，如果你要在一台机器上部署多个zookeeper，那么就需要将端口号换掉，和其他zookeeper的端口号隔离开来。
 
 ## 集群模式
+
 之后如果直接启动zookeeper的话，那就是**单机模式**运行了。但是如果要部署**集群**的话，还需要在文件末尾追加集群的信息。
 
 		server.0=00.11.22.33:2888:3888
@@ -109,6 +113,7 @@ img: http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg
 我们照样可以使用```./zkServer.sh status```命令来查看zookeeper的运行状态。正常情况下，只会有一个leader，其他都是follower。
 
 ## 动态扩容
+
 那么回归最开始的问题，如何在不影响现网的情况下动态扩容呢？
 我们需要分2中情况讨论。
 
@@ -122,4 +127,5 @@ img: http://odvzs788r.bkt.clouddn.com/fangchao.me/2016101300.jpg
 第二种情况就比较好了，步骤还是相同的，先部署新机器，再重启老机器。但是不同的是这个时候不会出现错误，也不会出现停止服务，整个扩容过程对用户是无感知的。
 
 ## END
+
 **实践出真知**。对zookeeper的部署研究了一些时间，进行了很多的实验，得出了上面的一些结论。如果上面有遗漏的地方或者不对的地方，欢迎讨论和指正。

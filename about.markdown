@@ -9,23 +9,23 @@ i'm
 
 who is a
 
-> Student | Coder 
+> Coder
+
+now working at
+
+> Tencent (Shenzhen)
+
+graduated from
+
+> Harbin Institute of Technology
 
 studying
 
 > Software Engineering
 
-at 
-
-> Harbin Institute of Technology
-
 once been an intern at
 
 > IBM China Software Development Lab
-
-now continue my internship at
-
-> Tencent
 
 involved in 
 
@@ -33,6 +33,6 @@ involved in
 
 mail 
 
-> [flygfch@163.com](mailto:flygfch@163.com)
+> [me@fangchao.me](mailto:me@fangchao.me)
 
 to reach me

@@ -7,6 +7,9 @@ author: "Gfch"
 atom-baseurl: "http://fangchao.me"
 
 navigations:
+  - title: Home
+    class: fa fa-home
+    href: /
   - title: Archive
     class: fa fa-list-ul
     href: /archive.html

@@ -3,7 +3,7 @@ title: Links
 layout: page
 ---
 
-[rusty shutter](http://lhzhang.com)
+[rusty shutter](http://lhzhang.com)  
 [D&amp;V](http://kaix.in/daddy)  
 [Mirageyard.com](http://www.mirageyard.com)  
 [Shellexy](http://shellexy.info)  

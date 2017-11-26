@@ -1,5 +1,5 @@
 ---
-title: [翻译]理解Storm拓扑的并行性
+title: 翻译 理解Storm拓扑的并行性
 layout: post
 guid: urn:uuid:ae08ed4e-defd-4da5-94ac-397897ea9ff0
 tags:

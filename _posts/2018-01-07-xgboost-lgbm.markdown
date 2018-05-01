@@ -1,10 +1,11 @@
 ---
-title: xgboost-lgbm
+title: Windows下XGBoost和LightGBM环境配置
 layout: post
 guid: urn:uuid:f2d36d25-c14c-462f-bdbf-e6b676eeead6
 tags:
   - xgboost
   - lightgbm
+  - windows
   - 环境配置
 img: 
 ---

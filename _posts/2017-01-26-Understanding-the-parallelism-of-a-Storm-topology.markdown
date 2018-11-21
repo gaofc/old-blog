@@ -24,7 +24,7 @@ Storm区分了用于在Storm集群中实际运行拓扑的以下三个主要实�
 
 这里是他们的关系的简单说明：
 
-![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2017012601.png)
+![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2017012601.png)
 
 工作进程运行着一个拓扑的子集。一个工作进程（worker processes）是属于一个特定的拓扑的，工作进程可以运行这个拓扑中一个或多个组件（spouts或者bolts）的一个或多个执行器（executors）。一个运行的拓扑是由多个这样的进程组成的，这些进程都是运行在storm集群中的多个机器中。
 
@@ -75,7 +75,7 @@ Storm区分了用于在Storm集群中实际运行拓扑的以下三个主要实�
 
 下图展示了一个简单的拓扑在运行中是什么样的。这个拓扑包含了3个组件，一个叫BlueSpout的spout，2个bolts分别为GreenBolt和YellowBolt。
 
-![](http://odvzs788r.bkt.clouddn.com/fangchao.me/2017012602.png)
+![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2017012602.png)
 
 这些组件是这样连接的，BlueSpout将其输出发送到GreenBolt，GreenBolt又将自己的输出发送到YellowBolt。
 

@@ -6,7 +6,7 @@ tags:
   - chef
   - tech
   - tools
-img: http://flygfch.opendrive.com/files/NjdfNl9EMWZ4SQ/2014052001.png
+img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052001.png
 ---
 
 *Author: Fangchao Gao*
@@ -68,7 +68,7 @@ Node其实很好理解，他是一个处于Chef管理之下的目标结点。我
 
 ### 3.1 Chef结构
 
-![1](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052001.png)
+![1](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052001.png)
 
 这是Chef的结构图,对图做一点解释:
 
@@ -97,13 +97,13 @@ Node其实很好理解，他是一个处于Chef管理之下的目标结点。我
 
 ### 3.3 Chef怎么工作
 
-![2](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052002.png)
+![2](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052002.png)
 
 如上图，我们会看到有三大部分，Workstation、Server和Nodes。简要的说，我们在Workstation中工作，写Recipe、Cookbook等，然后上传到服务器端，服务器端根据Node Object的不同需要，从Cookbook中读取需要的Recipe等，对每一个Node实施配置。Node可以是虚拟机，云服务，实体机等等。
 
 具体的，我们有了这幅图。
 
-![3](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052003.png)
+![3](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052003.png)
 
 我们在这里引入**Data Bag**这个概念。Data Bag是一个存储信息的工具，它提供了定义全局信息的方法。我们可以在其他地方来引用这些数据。它使用json的形式来保存数据。
 	
@@ -124,7 +124,7 @@ Node其实很好理解，他是一个处于Chef管理之下的目标结点。我
 在最终，我们会在浏览器中会看到一个这样的网页。
 
 
-![4](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052004.png)
+![4](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052004.png)
 
 
 **1) Set up Chef Environment**
@@ -326,11 +326,11 @@ cookbooks/iis-tutorial-1/files/default/，添加index.html文件，打开文件�
 run-list决定了这些Recipe的运行顺序。
 	登录manage.opscode.com，登录自己的账号，在Nodes这个tab下，选择一个node然后打开它的run-list。
 
-![5](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052005.png)
+![5](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052005.png)
 
 将Available Recipes中你需要的Recipe，拖动到Current Run List中。然后保存。
 
-![6](http://odvzs788r.bkt.clouddn.com/fangchao.me/2014052006.png)
+![6](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2014052006.png)
 
 
 **Step 6 运行Chef-client**
@@ -377,4 +377,3 @@ run-list决定了这些Recipe的运行顺序。
 
 *Author: FangChao Gao*
 
-我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan?invite_code=256cg8r4yezow

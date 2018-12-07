@@ -41,7 +41,7 @@ XGBoost源码地址在[GitHub](https://github.com/dmlc/xgboost/)上，也可以�
 5. IDE安装
 本人使用的是PyCharm的IDE，找到```File->Settings->Projest:XXX->Projest Interpreter```，点击+，搜索```xgboost```，安装，之后再代码中```import xgboost```就可以使用了
 
-![pycharm](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2018010701.png)
+![pycharm](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20180107/2018010701.png)
 
 
 ### LightGBM环境配置
@@ -59,7 +59,7 @@ XGBoost源码地址在[GitHub](https://github.com/dmlc/xgboost/)上，也可以�
 
 4. 编译dll
 使用VS打开```LightGBM.sln```文件，解决方案选择```DLL```，版本选x64，用快捷键```Ctrl+Shift+B```，生成解决方案。之后编译好的dll文件会在```windows\x64\DLL```文件夹里。
-![VS](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2018010702.png)
+![VS](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20180107/2018010702.png)
 
 5. 编译exe
 之后解决方案再选择```Release```，生成解决方案。exe文件会出现在```windows\x64\Release```文件夹中。如果发现了exe文件，说明安装成功了。

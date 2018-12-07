@@ -52,7 +52,7 @@ tags:
 
 在这里给大家推荐一个网站[fontsquirrel](http://www.fontsquirrel.com/)，可以在线的转换出各种字体，甚至生成一个CSS文件，我们直接就能在代码中使用。我们可以使用它将转换好的字体和CSS文件下载下来。
 
-![fontsquirrel](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2015110301.png)
+![fontsquirrel](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20151103/2015110301.png)
 
 ## Code
 

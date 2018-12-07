@@ -7,7 +7,7 @@ tags:
   - 集群
   - 动态扩容
   - 单机
-img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2016101300.jpg
+img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20161013/2016101300.jpg
 ---
 
 

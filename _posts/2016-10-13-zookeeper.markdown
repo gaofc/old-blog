@@ -7,7 +7,7 @@ tags:
   - 集群
   - 部署
   - 动态扩容
-img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2016101300.jpg
+img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20161013/2016101300.jpg
 ---
 
 
@@ -101,7 +101,7 @@ img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2016101300.jpg
 
 启动完成后，可以通过```./zkServer.sh status```命令来查看zookeeper的状态信息。
 
-![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2016101301.png)
+![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20161013/2016101301.png)
 
 - 如果是单机模式的话，可以看到```Mode: standalone```这样的提示。
 - 如果是集群模式的话，可能会看到zookeeper并没有启动成功。因为其他的服务器还没有启动，用于交换信息和选举的端口都没有打开，所以在*zookeeper.out*文件里你会看到出现各种端口连接错误。不用理会，这是正常的。

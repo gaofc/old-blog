@@ -8,7 +8,7 @@ tags:
   - format
   - yesterday
   - great wisdom
-img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2015110600.jpg
+img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20151106/2015110600.jpg
 ---
 
 ## Background
@@ -88,7 +88,7 @@ img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2015110600.jpg
 本以为又是很简单，使用一下```.format("%Y%m%d")```之类的应该就可以了，结果发现JS里面并没有类似于format这中方法！很头疼，难道又要取得年月日再组合起来么。百度了一下无果，于是就只能Google了，点开搜索结果第一个
 [stackoverflow](http://stackoverflow.com/questions/10645994/node-js-how-to-format-a-date-string-in-utc "stackoverflow")。
 
-![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2015110601.png)
+![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20151106/2015110601.png)
 
 当时看到这个答案真的是兴奋异常加豁然开朗。把得到的字符串自己处理一下不就行了，还用什么format！
 
@@ -96,7 +96,7 @@ img: https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2015110600.jpg
 
 我又想到了知乎上的那个回答。
 
-![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/2015110602.png)
+![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20151106/2015110602.png)
 
 Again：**这才是真的大智慧啊！**
 

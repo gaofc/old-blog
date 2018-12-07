@@ -38,9 +38,9 @@ img:
 
 我们通常会把大数据框架分为三部分。
 
- - **批处理系统**
- - **流处理系统**
- - **混合处理系统**
+- **批处理系统**
+- **流处理系统**
+- **混合处理系统**
 
 接下来给大家分别科普下这三种系统
 
@@ -71,7 +71,7 @@ Apache Storm是一种侧重于低延迟的流处理框架，它可以处理海�
 
 下面介绍下混合处理系统的代表框架Spark和Flink。
 
- - **Spark**
+- **Spark**
 
 ![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20181207/2018120709.PNG)
 
@@ -82,7 +82,7 @@ Spark由加州大学伯克利分校AMP实验室开发，最初的设计受到了
 而且除了最初开发用于批处理的Spark Core和用于流处理的Spark Streaming，Spark还提供了其他编程模型用于支持图计算（GraphX）、交互式查询（Spark SQL）和机器学习（MLlib）。
 
 
- - **Flink**
+- **Flink**
 
 ![](https://blog-1253353025.cos.ap-chengdu.myqcloud.com/20181207/2018120710.PNG)
 
@@ -98,9 +98,9 @@ Spark由加州大学伯克利分校AMP实验室开发，最初的设计受到了
 
 说到容错，首先必须要明确几个概念。
 
- - **at most once**：最多消费一次，会存在数据丢失
- - **at least once**：最少消费一次，保证数据不丢，但是有可能重复消费 
- - **exactly once**：精确一次，无论何种情况下，数据都只会消费一次，这是我们最希望看到的结果
+- **at most once**：最多消费一次，会存在数据丢失
+- **at least once**：最少消费一次，保证数据不丢，但是有可能重复消费 
+- **exactly once**：精确一次，无论何种情况下，数据都只会消费一次，这是我们最希望看到的结果
 
 ### Spark Streaming容错
 
@@ -121,9 +121,9 @@ Spark streaming的RDD机制只能保证内部计算exactly once（图中的1）�
 
 根据上面的讨论，可以得出：一个流式系统如果要做到exactly once，必须满足3点：
 
- 1. receiver处保证exactly once
- 2. 流式系统自身保证exactly once
- 3. sink处保证exactly once
+1. receiver处保证exactly once
+2. 流式系统自身保证exactly once
+3. sink处保证exactly once
 
 这里数据源采用Kafka举例是因为Kafka作为目前主流的分布式消息队列，比较有代表性。Kafka consumer的position可以保存在ZK或者Kafka中，也可以由consumer自己来保存。前者的话就可能存在数据消费和position更新不一致的问题（因为无法保证**原子性**，也是之前Spark streaming采用的方式），而采用后者的话，consumer可以采用**事务更新**的方式（写本地或者采用事务的方式写数据库），保证数据消费和position更新的**原子性**，从而实现exactly once
 
